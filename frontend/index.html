@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="registration-container">
+        <header class="form-header">
+            <h1 id="form-title">Create an Account</h1>
+            <p class="subtitle">Join us by entering your details below.</p>
+        </header>
+
+        <div id="status-banner" class="status-banner hidden" role="alert" aria-live="polite"></div>
+
+        <form id="registration-form" novalidate>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="e.g. Jane Doe" required autocomplete="name">
+                <span class="error-message" id="name-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="e.g. jane.doe@example.com" required
+                    autocomplete="email">
+                <span class="error-message" id="email-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="e.g.555 123 4567" required autocomplete="tel">
+                <span class="error-message" id="phone-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="At least 8 characters" required
+                    autocomplete="new-password">
+                <span class="error-message" id="password-error"></span>
+            </div>
+
+            <button type="submit" id="submit-btn" class="submit-btn">
+                <span>Create Account</span>
+            </button>
+        </form>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
