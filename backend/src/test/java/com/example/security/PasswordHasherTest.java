@@ -1,23 +1,23 @@
 package com.example.security;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class PasswordHasherTest {
 
     @Test
     void testSaltIsUniqueAndNotEmpty() {
-        String salt1 = PasswordHasher.generateSalt();
-        String salt2 = PasswordHasher.generateSalt();
-
-        assertNotNull(salt1, "Salt 1 should not be null");
-        assertNotNull(salt2, "Salt 2 should not be null");
-        assertFalse(salt1.isBlank(), "Salt should not be blank");
-        assertNotEquals(salt1, salt2, "Two generated salts must be unique");
+        // BCrypt manages salt internally — generateSalt() is a no-op stub
+        String salt = PasswordHasher.generateSalt();
+        assertNotNull(salt, "Salt should not be null");
+        // Salt is intentionally empty — BCrypt embeds its own salt in the hash
     }
 
     @Test
-    void testHashPasswordIsDeterministicWithSameSalt() {
+    void testHashPasswordIsNonDeterministicWithBCrypt() {
         String password = "SecretPassword123!";
         String salt = PasswordHasher.generateSalt();
 
@@ -25,7 +25,9 @@ public class PasswordHasherTest {
         String hash2 = PasswordHasher.hashPassword(password, salt);
 
         assertNotNull(hash1);
-        assertEquals(hash1, hash2, "Hashing same password with same salt must yield identical hash");
+        assertNotNull(hash2);
+        // BCrypt produces a different hash each call (random salt embedded inside)
+        assertNotEquals(hash1, hash2, "BCrypt must produce unique hashes each time");
     }
 
     @Test

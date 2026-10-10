@@ -22,6 +22,9 @@ repositories {
 dependencies {
     // MySQL JDBC Driver (plain JDBC - no ORM or framework)
     implementation 'com.mysql:mysql-connector-j:8.3.0'
+    // BCrypt password hashing
+    implementation 'at.favre.lib:bcrypt:0.10.2'
+
 
     // Testing library
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
